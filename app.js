@@ -18,9 +18,8 @@ let UIcontroller = (function () {
         logo: 'About'
     };
 
-    let fadeOut = function (target, text) {
+    let fadeIn = function (target, text) {
         target.classList.add('fadeOut');
-
         setTimeout(() => {
             target.textContent = text;
         }, 300);
@@ -30,17 +29,36 @@ let UIcontroller = (function () {
         }, 300);
     };
 
+    let fadeOut = function (target) {
+        target.classList.add('fadeOut');
+        setTimeout(() => {
+            target.textContent = '';
+        }, 300)
+    };
+
     return {
         showInfo: function (key, ID) { //function to show what specific menu icon does on mouseover 
             let iconInfo = document.getElementById('header-icon-info');
             let logoInfo = document.getElementById('header-logo-info');
+
+            if (ID === 'header-menu-logo') {
+                fadeIn(logoInfo, infoData[key]);
+                console.log('true')
+            } else {
+                fadeIn(iconInfo, infoData[key]);
+            }
+        },
+
+        hideInfo: function (key, ID) {
+            let iconInfo = document.getElementById('header-icon-info');
+            let logoInfo = document.getElementById('header-logo-info');
+
             if (ID === 'header-menu-logo') {
                 fadeOut(logoInfo, infoData[key]);
+                console.log('false')
             } else {
                 fadeOut(iconInfo, infoData[key]);
             }
-            
-            //ele.textContent = infoData[target];
         }
     }
 
@@ -49,7 +67,7 @@ let UIcontroller = (function () {
 //APPLICATION CONTROLLER
 
 let appController = (function (ctrData, ctrUI) {
-    let stringsDOM = {
+    let menuDom = {
         newBudget: 'new-budget',
         lodBudget: 'load-budget',
         saveBudget: 'save-budget',
@@ -66,8 +84,17 @@ let appController = (function (ctrData, ctrUI) {
     }
 
     document.addEventListener('mouseover', (event) => {
-        let key = findKey(stringsDOM, event.target.id);
-        ctrUI.showInfo(key, event.target.id);
-    })
+        let key = findKey(menuDom, event.target.id);
+        if (key) {
+            ctrUI.showInfo(key, event.target.id);
+        };
+    });
+
+    document.addEventListener('mouseout', (event) => {
+        let key = findKey(menuDom, event.target.id);
+        if (key) {
+            ctrUI.hideInfo(key, event.target.id);
+        };
+    });
 
 })(dataController, UIcontroller);
