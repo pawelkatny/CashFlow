@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
+    background: linear-gradient(90deg, rgba(246, 156, 156, 0.3) 0%, rgba(95,212,175,0.3) 50%, rgba(1,203,214,0.3) 100%);
 }
 
 /* Clear fix hack*/
@@ -15,8 +16,7 @@ body {
 /* Main container */
 .header-container {
     margin: 0;
-    background-image: url('./images/bground1920.png');
-    height: 350px;
+    height: 370px;
 }
 
 /* Information summary */
@@ -32,13 +32,14 @@ body {
     display: inline-block;
     margin-top: 20px;
     width: 500px;
-    height: 230px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.8);
     text-align: center;
+    border: 1px solid #cccccc;
 }
 
 .budget-sumup {
     margin-left: 560px;
+        height: 230px;
 }
 
 .budget-total, .income-total, .expenses-total {
@@ -55,6 +56,10 @@ body {
     height: 40px;
     line-height: 40px;
     font-size: 24px;
+}
+
+.highlight-budget {
+    background: rgba(1, 203, 214, 0.1);
 }
 
 .budget-balance, .income-balance, .expenses-balance {
@@ -97,6 +102,10 @@ body {
     color: #5fd4af; 
 }
 
+.income-sumup, .expenses-sumup {
+    margin-top: 40px;
+}
+
 .expenses-sumup {
     right: 0;
 }
@@ -118,14 +127,17 @@ body {
 .header-menu-container {
     /*position: relative;*/
     margin-top: 14px;
-    height: 70px;
+    height: 90px;
+    line-height: 90px;
+    vertical-align: middle;
+    border: 1px solid #cccccc;
 }
 
 .header-menu-bar {
     position: absolute;
     width: 100%;
-    height: 70px;
-    opacity: 0.75;
+    height: 90px;
+    opacity: 0.65;
     background-color: white;
     z-index: 1;
 }

@@ -86,19 +86,21 @@ let UIcontroller = (function () {
 
 let appController = (function (ctrData, ctrUI) {
 
-    var DOM = ctrUI.stringsDOM();
-    var menuDom = DOM.menu;
+    let DOM = ctrUI.stringsDOM();
+    let menuDom = DOM.menu;
 
-    var findKey = (object, value) => Object.keys(object).find(key => object[key] === value ? key : null)
+    let navBar = document.querySelector('.header-menu-container');
 
-    document.addEventListener('mouseover', (event) => {
+    let findKey = (object, value) => Object.keys(object).find(key => object[key] === value ? key : null)
+
+    navBar.addEventListener('mouseover', (event) => {
         let key = findKey(menuDom, event.target.id);
         if (key) {
             ctrUI.showInfo(key, event.target.id);
         };
     });
 
-    document.addEventListener('mouseout', (event) => {
+    navBar.addEventListener('mouseout', (event) => {
         let key = findKey(menuDom, event.target.id);
         if (key) {
             ctrUI.hideInfo(key, event.target.id);
