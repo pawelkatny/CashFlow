@@ -18,6 +18,18 @@ let UIcontroller = (function () {
         logo: 'About'
     };
 
+    let menuDOM = {
+        newBudget: 'new-budget',
+        lodBudget: 'load-budget',
+        saveBudget: 'save-budget',
+        clearData: 'clear-data',
+        showCharts: 'show-charts',
+        showHelp: 'show-help',
+        logo: 'header-menu-logo',
+        iconInfo: 'header-icon-info',
+        logoInfo: 'header-logo-info'
+    };
+
     let fadeIn = function (target, text) {
         target.classList.add('fadeOut');
         setTimeout(() => {
@@ -59,6 +71,12 @@ let UIcontroller = (function () {
             } else {
                 fadeOut(iconInfo, infoData[key]);
             }
+        },
+
+        stringsDOM: function () {
+            return {
+                menu: menuDOM
+            };
         }
     }
 
@@ -67,21 +85,11 @@ let UIcontroller = (function () {
 //APPLICATION CONTROLLER
 
 let appController = (function (ctrData, ctrUI) {
-    let menuDom = {
-        newBudget: 'new-budget',
-        lodBudget: 'load-budget',
-        saveBudget: 'save-budget',
-        clearData: 'clear-data',
-        showCharts: 'show-charts',
-        showHelp: 'show-help',
-        logo: 'header-menu-logo',
-        iconInfo: 'header-icon-info',
-        logoInfo: 'header-logo-info'
-    }
 
-    var findKey = (object, value) => {
-        return Object.keys(object).find(key => object[key] === value ? key : null)
-    }
+    var DOM = ctrUI.stringsDOM();
+    var menuDom = DOM.menu;
+
+    var findKey = (object, value) => Object.keys(object).find(key => object[key] === value ? key : null)
 
     document.addEventListener('mouseover', (event) => {
         let key = findKey(menuDom, event.target.id);
