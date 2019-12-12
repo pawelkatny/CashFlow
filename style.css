@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    background: linear-gradient(90deg, rgba(246, 156, 156, 0.3) 0%, rgba(95,212,175,0.3) 50%, rgba(1,203,214,0.3) 100%);
+    background: linear-gradient(90deg, rgba(246, 156, 156, 0.2) 0%, rgba(95,212,175,0.2) 50%, rgba(1,203,214,0.2) 100%);
 }
 
 /* Clear fix hack*/
@@ -11,6 +11,7 @@ body {
     clear: both;
     display: table;
 }
+
 
 /* HEADER */
 /* Main container */
@@ -34,12 +35,14 @@ body {
     width: 500px;
     background: rgba(255, 255, 255, 0.8);
     text-align: center;
+}
+
+.border-gray {
     border: 1px solid #cccccc;
 }
 
 .budget-sumup {
     margin-left: 560px;
-        height: 230px;
 }
 
 .budget-total, .income-total, .expenses-total {
@@ -81,25 +84,6 @@ body {
 
 .expenses-balance {
     background-color: #ff7a7a;
-}
-
-.savings-left, .savings-right {
-    width: 240;
-    height: 40px;
-}
-
-.savings-left {
-    position: absolute;
-    left: 0;
-    text-align: right;
-}
-
-.savings-right {
-    position: absolute;
-    right: 0;
-    font-size: 38px;
-    text-align: left;
-    color: #5fd4af; 
 }
 
 .income-sumup, .expenses-sumup {
@@ -224,8 +208,59 @@ body {
 }
 */
 
-/* Main container */
+/* MAIN CONTAINER */
 
-.main-content-container {
-    margin-top: 16px;
+.main-container {
+    margin-top: 3rem;
+}
+
+/*Input form*/
+.data-input {
+    margin: 0 auto 3rem auto;
+    text-align: center;
+}
+
+.input-type {
+    height: 34px;
+    padding: 0 15px 0 15px;
+    font-size: 20px;
+    margin-right: 15px;
+    background-color: white;
+    text-align: center;
+}
+
+.input-btn {
+    height: 40px;
+    width: 100px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    outline: none;
+}
+
+/*Income and Expenses elements*/
+.main-content {
+    width: 1400px;
+    margin: auto;
+}
+
+.main-income, .main-expenses {
+    display: inline-block;
+    width: 600px;
+    text-align: center;
+}
+
+.main-income {
+    float: left;
+}
+
+.main-expenses {
+    float: right;
+}
+
+.margin-reset {
+    margin: 0;
+    height: 30px;
+    line-height: 30px;
+    font-size: 24px;
 }

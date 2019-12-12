@@ -3,6 +3,38 @@
 
 let dataController = (function () {
 
+    let Income = function (id, desc, value) {
+        this.id = id,
+        this.desc = desc,
+        this.value = value
+    }
+
+    let Expense = function (id, desc, value) {
+        this.id = id,
+        this.desc = desc,
+        this.value = value
+    }
+
+    let budgetDATA = {
+        month: null,
+        year: null,
+        budget: 0,
+        items: {
+            inc: [],
+            exp: []
+        },
+        total: {
+            inc: 0,
+            exp: 0
+        }
+    }
+
+    return {
+        getData: function() {
+            return budgetDATA;
+        }
+    }
+
 })();
 //UI CONTROLLER
 
@@ -10,7 +42,7 @@ let UIcontroller = (function () {
 
     let infoData = {
         newBudget: 'Create new budget',
-        lodBudget: 'Load budget file',
+        loadBudget: 'Load budget file',
         saveBudget: 'Save your current work',
         clearData: 'Clear all data',
         showCharts: 'Show charts',
@@ -18,17 +50,22 @@ let UIcontroller = (function () {
         logo: 'About'
     };
 
-    let menuDOM = {
+    let stringsDOM = {
         newBudget: 'new-budget',
-        lodBudget: 'load-budget',
+        loadBudget: 'load-budget',
         saveBudget: 'save-budget',
         clearData: 'clear-data',
         showCharts: 'show-charts',
         showHelp: 'show-help',
         logo: 'header-menu-logo',
         iconInfo: 'header-icon-info',
-        logoInfo: 'header-logo-info'
+        logoInfo: 'header-logo-info',
+        inputType: '.input-type',
+        inputDesc: '.add-desc',
+        inputValue: '.add-value',
+        inputBtn: '.input-btn'
     };
+
 
     let fadeIn = function (target, text) {
         target.classList.add('fadeOut');
@@ -73,10 +110,16 @@ let UIcontroller = (function () {
             }
         },
 
-        stringsDOM: function () {
+        getInput: function () {
             return {
-                menu: menuDOM
-            };
+                type: document.querySelector(stringsDOM.inputType).value,
+                desc: document.querySelector(stringsDOM.inputDesc).value,
+                value: document.querySelector(stringsDOM.inputValue).value
+            }
+        },
+
+        stringsDOM: function () {
+            return stringsDOM;
         }
     }
 
@@ -87,24 +130,31 @@ let UIcontroller = (function () {
 let appController = (function (ctrData, ctrUI) {
 
     let DOM = ctrUI.stringsDOM();
-    let menuDom = DOM.menu;
 
     let navBar = document.querySelector('.header-menu-container');
+
+    let addBtn = document.querySelector(DOM.inputBtn);
 
     let findKey = (object, value) => Object.keys(object).find(key => object[key] === value ? key : null)
 
     navBar.addEventListener('mouseover', (event) => {
-        let key = findKey(menuDom, event.target.id);
+        let key = findKey(DOM, event.target.id);
         if (key) {
             ctrUI.showInfo(key, event.target.id);
         };
     });
 
     navBar.addEventListener('mouseout', (event) => {
-        let key = findKey(menuDom, event.target.id);
+        let key = findKey(DOM, event.target.id);
         if (key) {
             ctrUI.hideInfo(key, event.target.id);
         };
     });
+
+    addBtn.addEventListener('click', () => {
+        console.log(ctrUI.getInput());
+    })
+    
+
 
 })(dataController, UIcontroller);

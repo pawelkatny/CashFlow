@@ -12,24 +12,18 @@
 <body>
     <header class="header-container">
         <section class="header-data-summary">
-            <div class="income-sumup">
+            <div class="income-sumup border-gray">
                 <div class="income-total">+ 3470.50</div>
-                <div class="budget-info">additional stuff</div>
                 <div class="income-balance">INCOME</div>
             </div>
-            <div class="budget-sumup">
+            <div class="budget-sumup border-gray">
                 <div class="budget-info highlight-budget">January - 2019</div>
                 <div class="budget-total">+ 927.50</div>
-                <div class="budget-info">
-                    <div class="savings-left">Savings:</div>
-                    <div class="savings-right">{ 550 }</div>
-                </div>
                 <div class="budget-balance">BALANCE</div>
 
             </div>
-            <div class="expenses-sumup">
+            <div class="expenses-sumup border-gray">
                 <div class="expenses-total">- 2500.70</div>
-                <div class="budget-info">additional stuff</div>
                 <div class="expenses-balance">EXPENSES</div>
             </div>
         </section>
@@ -51,12 +45,25 @@
         </nav>
     </header>
 
-    <main class="main-content-container">
-        <section>
-            <div>Income</div>
-        </section>
-        <section>
-            <div>Expenses</div>
+    <main class="main-container">
+        <div class="data-input">
+            <select name="type" class="input-type">
+                <option value="inc">+ Income</option>
+                <option value="exp">- Expense</option>
+            </select>
+            <input type="text" class="input-type add-desc" placeholder="Add description">
+            <input type="number" class="input-type add-value" placeholder="Value">
+            <button class="input-type input-btn">Add</button>
+        </div>
+        <section class="main-content clearfix">
+            <div class="main-income">
+                <div class="income-balance margin-reset">INCOME</div>
+                <div>Income</div>
+            </div>
+            <div class="main-expenses">
+                <div class="expenses-balance margin-reset">EXPENSES</div>
+            </div>
+
         </section>
     </main>
 </body>
