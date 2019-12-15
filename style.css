@@ -45,12 +45,12 @@ body {
     margin-left: 560px;
 }
 
-.budget-total, .income-total, .expenses-total {
+.balance-total, .income-total, .expenses-total {
     height: 120px;
     line-height: 120px;
 }
 
-.budget-total {
+.balance-total {
     font-size: 90px;
     color: #01cbd6;
 }
