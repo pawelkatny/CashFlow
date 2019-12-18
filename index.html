@@ -31,7 +31,7 @@
             <div class="header-menu-bar"></div>
             <ul class="header-menu-left">
                 <li><img id="new-budget" src="images/icons/new.png" alt=""></li>
-                <li><img id="load-budget" src="images/icons/load.png" alt=""></li>
+                <li><input type="file" style="display: none;"><img id="load-budget" src="images/icons/load.png" alt=""></li>
                 <li><img id="save-budget" src="images/icons/save.png" alt=""></li>
                 <li><img id="clear-data" src="images/icons/clear.png" alt=""></li>
                 <li><img id="show-charts" src="images/icons/charts.png" alt=""></li>
@@ -51,16 +51,18 @@
                 <option value="inc">Income</option>
                 <option value="exp">Expense</option>
             </select>
-            <input type="text" class="input-type add-desc" placeholder="Add description">
+            <input type="text" class="input-type add-desc" placeholder="Description">
             <input type="number" class="input-type add-value" placeholder="Value">
             <button class="input-type input-btn">Add</button>
         </div>
         <section class="main-content clearfix">
-            <div class="main-income">
+            <div class="main-inc">
                 <div class="income-balance margin-reset">INCOME</div>
+                <div class="inc-list"></div>
             </div>
-            <div class="main-expenses">
+            <div class="main-exp">
                 <div class="expenses-balance margin-reset">EXPENSES</div>
+                <div class="exp-list"></div>
             </div>
 
         </section>

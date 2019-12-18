@@ -32,9 +32,17 @@ body {
     position: absolute;
     display: inline-block;
     margin-top: 20px;
-    width: 500px;
+
     background: rgba(255, 255, 255, 0.8);
     text-align: center;
+}
+
+.budget-sumup {
+    width: 500px;
+}
+
+.income-sumup, .expenses-sumup {
+    width: 400px;
 }
 
 .border-gray {
@@ -186,28 +194,6 @@ body {
     opacity: 0;
 }
 
-/* Menu logo */
-/*
-#header-menu-logo {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    top: 50%;
-    margin-top: -35px;
-    z-index: 2;
-}
-
-#header-menu-logo{
-    transition: all 0.6s;
-}
-
-#header-menu-logo:hover {
-    transform: scale(1.05);
-    transition: all 0.6s;
-    cursor: pointer;
-}
-*/
-
 /* MAIN CONTAINER */
 
 .main-container {
@@ -244,17 +230,17 @@ body {
     margin: auto;
 }
 
-.main-income, .main-expenses {
+.main-inc, .main-exp {
     display: inline-block;
     width: 600px;
     text-align: center;
 }
 
-.main-income {
+.main-inc {
     float: left;
 }
 
-.main-expenses {
+.main-exp  {
     float: right;
 }
 
@@ -263,4 +249,50 @@ body {
     height: 30px;
     line-height: 30px;
     font-size: 24px;
+}
+
+.inc-list div, .exp-list div {
+    background-color: white;
+    color: #4d4d4d;
+}
+
+
+.list-border {
+    border-bottom: 1px solid #cccccc;
+}
+
+.item-desc, .item-val, .item-del {
+    display: inline-block;
+    margin: auto;
+    height: 40px;
+    padding: 5px;
+    font-size: 24px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.item-desc {
+    width: 340px;
+    text-indent: 10%;
+    text-align: start;
+}
+
+.item-val {
+    width: 140px;
+}
+
+.item-del { 
+    width: 90px;
+    vertical-align: middle;
+}
+
+.icon-del, .icon-del:hover {
+    width: 40px;
+    opacity: 0.5;
+    transition: all 0.7s;
+}
+
+.icon-del:hover {
+    opacity: 1.0;
+    cursor: pointer;
 }

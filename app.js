@@ -121,8 +121,8 @@ let UIcontroller = (function () {
         inputDesc: '.add-desc',
         inputValue: '.add-value',
         inputBtn: '.input-btn',
-        incList: '.main-income',
-        expList: '.main-expenses',
+        incList: '.inc-list',
+        expList: '.exp-list',
         balance: '.balance-total',
         incTotal: '.income-total',
         expTotal: '.expenses-total'
@@ -145,6 +145,18 @@ let UIcontroller = (function () {
         setTimeout(() => {
             target.textContent = '';
         }, 300)
+    };
+
+    let clearList = function (type) {
+        let string = '.' + type + '-list';
+        let parent = document.querySelector(string);
+        let children = parent.children;
+
+        var arrayHTML = Array.from(children);
+
+        arrayHTML.forEach((ele) => {
+            parent.removeChild(ele);
+        })
     };
 
     return {
@@ -181,7 +193,7 @@ let UIcontroller = (function () {
         addItemUI: function (type, object) {
             let html, newHtml, selector;
 
-            html = '<div id="' + type + '-%id"><span>%desc - </span><span>%val</span></div>';
+            html = '<div class="list-border" id="' + type + '-%id"><div class="item-desc">%desc</div><div class="item-val">%val</div><div class="item-del"><img class="icon-del" src="images/icons/delete.png"></div></div>';
 
             if (type === 'inc') {
                 selector = document.querySelector(stringsDOM.incList);
@@ -191,10 +203,26 @@ let UIcontroller = (function () {
 
             newHtml = html.replace('%id', object.id);
             newHtml = newHtml.replace('%desc', object.desc);
-            newHtml = newHtml.replace('%val', object.value);
+            if (type === 'inc') {
+                newHtml = newHtml.replace('%val', "+ " + object.value);
+            } else if (type === 'exp') {
+                newHtml = newHtml.replace('%val', "- " + object.value);
+            };
 
             selector.insertAdjacentHTML('beforeend', newHtml);
 
+        },
+
+        clearInput: function () {
+            let input, inputArray;
+
+            input = document.querySelectorAll(stringsDOM.inputDesc + ', ' + stringsDOM.inputValue);
+
+            inputArray = Array.prototype.slice.call(input);
+
+            inputArray.forEach((current) => {
+                current.value = "";
+            });
         },
 
         updateUI: function (objData) {
@@ -202,6 +230,11 @@ let UIcontroller = (function () {
                 objData.balance : '+' + objData.balance);
             document.querySelector(stringsDOM.incTotal).textContent = objData.inc == 0 ? '- - -' : '+' + objData.inc;
             document.querySelector(stringsDOM.expTotal).textContent = objData.exp == 0 ? '- - -' : '-' + objData.exp;
+        },
+
+        clearUI: function () {
+            clearList('inc');
+            clearList('exp');
         },
 
         stringsDOM: function () {
@@ -219,13 +252,17 @@ let appController = (function (ctrData, ctrUI) {
 
         //get input
         let input = ctrUI.getInput();
-        //add item to data structure
-        let newItem = ctrData.addItem(input.type, input);
-        //add item to ui
-        ctrUI.addItemUI(input.type, newItem);
-        //update budget
-        updateBudget();
 
+        if (input.desc !== '' && !isNaN(input.value) && input.value > 0) {
+            //add item to data structure
+            let newItem = ctrData.addItem(input.type, input);
+            //add item to ui
+            ctrUI.addItemUI(input.type, newItem);
+            //update budget
+            updateBudget();
+            //clear fields
+            ctrUI.clearInput();
+        }
     }
 
     let updateBudget = function () {
@@ -236,9 +273,12 @@ let appController = (function (ctrData, ctrUI) {
 
     let findKey = (object, value) => Object.keys(object).find(key => object[key] === value ? key : null);
 
+    // Functions - navigation bar
     let startMenu = function (key) {
         menuFunctions[key]();
     }
+
+
 
     let menuFunctions = {
         newBudget: function () {
@@ -247,10 +287,11 @@ let appController = (function (ctrData, ctrUI) {
 
         clearData: function () {
             ctrData.clearBudget();
+            ctrUI.clearUI()
             updateBudget();
         }
     }
-
+    // Event listeners initialization
     let setupEvents = function () {
 
 
@@ -290,6 +331,10 @@ let appController = (function (ctrData, ctrUI) {
             setupEvents();
             menuFunctions.clearData();
             console.log('Application started.')
+        },
+
+        test: function () {
+            ctrUI.clearUI();
         }
     }
 
